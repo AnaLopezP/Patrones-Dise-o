@@ -144,7 +144,7 @@ class Director:
         self.builder.produce_part_b()
         self.builder.produce_part_c()
         
-    def build_full_featured_producto(self) -> None:
+    def build_full_featured_product(self) -> None:
         self.builder.produce_part_a()
         self.builder.produce_part_b()
         self.builder.produce_part_c()
@@ -181,4 +181,5 @@ if __name__ == "__main__":
     print("Custom product: ")
     builder.produce_part_a()
     builder.produce_part_b()
+    builder.produce_part_c()
     builder.product.list_parts()
