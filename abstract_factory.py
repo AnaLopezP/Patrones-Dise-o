@@ -23,6 +23,9 @@ class AbstractFactory(ABC):
     def create_product_c(self) -> AbstractProductC:
         return ConcreteProductC1()
 
+    @abstractmethod
+    def create_product_d(self) -> AbstractProductD:
+        return ConcreteProductD1()
 
 class ConcreteFactory1(AbstractFactory):
     """
@@ -71,6 +74,14 @@ class ConcreteProductA1(AbstractProductA):
     def useful_function_a(self) -> str:
         return "The result of the product A1."
 
+    def another_useful_function_a(self, collaborator: AbstractProductB) -> str:
+        """
+        The variant, Product A1, is only able to work correctly with the
+        variant, Product B1. Nevertheless, it accepts any instance of
+        AbstractProductB as an argument.
+        """
+        result = collaborator.useful_function_b()
+        return f"The result of the A1 collaborating with the ({result})" #aqui mezclamos el producto A1 con el B1 
 
 class ConcreteProductA2(AbstractProductA):
     def useful_function_a(self) -> str:
