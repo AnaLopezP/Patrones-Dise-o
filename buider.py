@@ -9,7 +9,7 @@ class Builder(ABC):
     the Product objects.
     """
 
-    @property
+    @property #nos genera los getter y los setter de lo de debajo
     @abstractmethod
     def product(self) -> None:
         pass
@@ -25,9 +25,17 @@ class Builder(ABC):
     @abstractmethod
     def produce_part_c(self) -> None:
         pass
+    
+    @abstractmethod
+    def produce_part_d(self) -> None:
+        pass
+    
+    @abstractmethod
+    def produce_part_e(self) -> None:
+        pass
 
 
-class ConcreteBuilder1(Builder):
+class ConcreteBuilder1(Builder): #no son interface, son clases
     """
     The Concrete Builder classes follow the Builder interface and provide
     specific implementations of the building steps. Your program may have
@@ -73,6 +81,11 @@ class ConcreteBuilder1(Builder):
     def produce_part_c(self) -> None:
         self._product.add("PartC1")
 
+    def produce_part_d(self) -> None:
+        self._product.add("PartD1")
+    
+    def produce_part_e(self) -> None:
+        self._product.add("PartE1")
 
 class Product1():
     """
@@ -130,6 +143,8 @@ class Director:
         self.builder.produce_part_a()
         self.builder.produce_part_b()
         self.builder.produce_part_c()
+        
+
 
 
 if __name__ == "__main__":
