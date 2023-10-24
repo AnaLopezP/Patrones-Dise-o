@@ -1,12 +1,12 @@
-import copy
-
+import copy #para copiar y clonar objetos
 
 class SelfReferencingEntity:
     def __init__(self):
-        self.parent = None
+        self.parent = None #none porque es un vector y apunta a la siguiente dirección de memoria
+        #una interface que definimos como vacía porque python no tiene interface. Entonces apuntamos a la siguiente dirección de memoria
 
     def set_parent(self, parent):
-        self.parent = parent
+        self.parent = parent #esto es lo que quiero que clone
 
 
 class SomeComponent:
@@ -16,7 +16,7 @@ class SomeComponent:
     implementations have to override `__copy__` and `__deepcopy__` member
     functions.
     """
-
+    #clase para definir componentes
     def __init__(self, some_int, some_list_of_objects, some_circular_ref):
         self.some_int = some_int
         self.some_list_of_objects = some_list_of_objects
@@ -28,17 +28,19 @@ class SomeComponent:
         `copy.copy` with this object and the returned value is returned as the
         new shallow copy.
         """
-
+        #vamos a copiar lo que hemos definido arriba a través del puntero
         # First, let's create copies of the nested objects.
         some_list_of_objects = copy.copy(self.some_list_of_objects)
         some_circular_ref = copy.copy(self.some_circular_ref)
 
         # Then, let's clone the object itself, using the prepared clones of the
         # nested objects.
+        #esto es un nuevo objeto para clonar
         new = self.__class__(
             self.some_int, some_list_of_objects, some_circular_ref
         )
-        new.__dict__.update(self.__dict__)
+        new.__dict__.update(self.__dict__) #el dict es un diccionario del mapeo para acceder a listas enlazadas
+        #
 
         return new
 
