@@ -40,9 +40,9 @@ class SomeComponent:
             self.some_int, some_list_of_objects, some_circular_ref
         )
         new.__dict__.update(self.__dict__) #el dict es un diccionario del mapeo para acceder a listas enlazadas
-        #
+        #estamos usando proxy: mappingproxy. lo que hacemos es mappear y actualizar el dato.
 
-        return new
+        return new 
 
     def __deepcopy__(self, memo=None):
         """
@@ -56,11 +56,14 @@ class SomeComponent:
         you make in the `__deepcopy__` implementation to prevent infinite
         recursions.
         """
+        #copia profunda. 
         if memo is None:
-            memo = {}
+            memo = {} #none: algo que estamos almacenando que rellenaremos en otro momento
 
         # First, let's create copies of the nested objects.
-        some_list_of_objects = copy.deepcopy(self.some_list_of_objects, memo)
+        #memo es un diccionario vacio
+        #el clonar, lo dividimos con otros patrones (no se me perdi a mitad de frase)
+        some_list_of_objects = copy.deepcopy(self.some_list_of_objects, memo) 
         some_circular_ref = copy.deepcopy(self.some_circular_ref, memo)
 
         # Then, let's clone the object itself, using the prepared clones of the
@@ -84,6 +87,7 @@ if __name__ == "__main__":
 
     # Let's change the list in shallow_copied_component and see if it changes in
     # component.
+    #añadimos elementos a la lista que queremos. es una cola
     shallow_copied_component.some_list_of_objects.append("another object")
     if component.some_list_of_objects[-1] == "another object":
         print(
@@ -158,3 +162,6 @@ if __name__ == "__main__":
         "^^ This shows that deepcopied objects contain same reference, they "
         "are not cloned repeatedly."
     )
+    
+    '''nunca será el mismo clon, estamos pidiendo de forma aleatoria. se clona en un espacio de memoria diferente
+    '''
