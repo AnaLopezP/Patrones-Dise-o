@@ -163,5 +163,7 @@ if __name__ == "__main__":
         "are not cloned repeatedly."
     )
     
-    '''nunca será el mismo clon, estamos pidiendo de forma aleatoria. se clona en un espacio de memoria diferente
+    '''
+    nunca será el mismo clon, estamos pidiendo de forma aleatoria. 
+    se clona en un espacio de memoria diferente
     '''
