@@ -165,5 +165,6 @@ if __name__ == "__main__":
     
     '''
     nunca será el mismo clon, estamos pidiendo de forma aleatoria. 
-    se clona en un espacio de memoria diferente
+    se clona en un espacio de memoria diferente. la verdad es que al
+    final ha ido muy rapido y no me he enterado de nada
     '''
